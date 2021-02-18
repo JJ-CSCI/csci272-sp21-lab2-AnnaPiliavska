@@ -19,6 +19,7 @@ public:
   Compass getLatitudeDirection() { return latitudeDirection; }
   double getLongitude() { return longitude; }
   Compass getLongitudeDirection() {return longitudeDirection; }
+  GPS();
   GPS(double a, double b){
     a = latitude;
     b = longitude;
@@ -27,15 +28,15 @@ public:
       latitudeDirection = Compass::N;
       longitudeDirection = Compass::W;
     }
-    else if ((a <= 90.0) && (c <= 180.0)) {
+    else if ((a <= 90.0) && (b <= 180.0)) {
       latitudeDirection = Compass::N;
       longitudeDirection = Compass::W;
     }
-    else if ((a > 90.0) && (c <= 180.0)) {
+    else if ((a > 90.0) && (b <= 180.0)) {
       latitudeDirection = 0;
       longitudeDirection = Compass::W;
     }
-    else if ((a <= 90.0) && (c > 180.0)) {
+    else if ((a <= 90.0) && (b > 180.0)) {
       latitudeDirection = Compass::N;
       longitudeDirection = 0;
     }
