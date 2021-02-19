@@ -8,9 +8,6 @@
 enum class Compass {N, S, W, E};
 
 // Write your code here
-enum class Compass {N, S, W, E};
-
-// Write your code here
 class GPS {
 private:
   double latitude;
