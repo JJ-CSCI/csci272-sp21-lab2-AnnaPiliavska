@@ -8,6 +8,9 @@
 enum class Compass {N, S, W, E};
 
 // Write your code here
+enum class Compass {N, S, W, E};
+
+// Write your code here
 class GPS {
 private:
   double latitude;
@@ -26,53 +29,68 @@ public:
     longitude = 0;
     longitudeDirection =  Compass::W;
   }
-  GPS(double latitude, double longitude) {
-    if (((0.0 <= latitude) && (latitude <= 90.0)) && ((0.0 <= longitude) && (longitude <= 180.0))){
+  GPS(double lat, double lon) {
+    if (((lat >= 0.0) && (lat <= 90.0)) && ((lon >= 0.0) && (lon <= 180.0))){
+      latitude = lat;
       latitudeDirection = Compass::N;
+      longitude = lon;
       longitudeDirection = Compass::W;
     }
-    else if (((0.0 > latitude) || (latitude > 90.0)) && ((0.0 <= longitude) && (longitude <= 180.0))) {
+    else if (((lat < 0.0) || (lat > 90.0)) && ((lon >= 0.0) && (lon <= 180.0))) {
       latitude = 0;
       latitudeDirection = Compass::N;
+      longitude = lon;
       longitudeDirection = Compass::W;
     }
-    else if (((0.0 > latitude) || (latitude > 90.0)) && ((0.0 > longitude) || (longitude > 180.0))) {
+    else if (((lat < 0.0) || (lat > 90.0)) && ((lon < 0.0) || (lon > 180.0))) {
       latitude = 0;
       longitude = 0;
       latitudeDirection = Compass::N;
       longitudeDirection = Compass::W;
     }
-    else if (((0.0 <= latitude) && (latitude <= 90.0)) && ((0.0 > longitude) || (longitude > 180.0))) {
+    else if (((lat >= 0.0) && (lat <= 90.0)) && ((lon < 0.0) || (lon > 180.0))) {
+      latitude = lat;
       longitude = 0;
       latitudeDirection = Compass::N;
       longitudeDirection = Compass::W;
     }
   }
-  GPS(double latitude, Compass latitudeDirection, double longitude, Compass longitudeDirection){
+  GPS(double lat, Compass latDirect, double lon, Compass lonDirect){
+    latitude = lat;
+    latitudeDirection = latDirect;
+    longitude = lon;
+    longitudeDirection = lonDirect;
 
-    if (((0.0 <= latitude) && (latitude <= 90.0)) && ((0.0 <= longitude) && (longitude <= 180.0))){
-      if (((latitudeDirection == Compass::N) || (latitudeDirection == Compass::S)) && ((longitudeDirection == Compass::W) || (longitudeDirection == Compass::E))) {}
-      else if (((latitudeDirection != Compass::N) && (latitudeDirection != Compass:: S)) && ((longitudeDirection == Compass::W) || (longitudeDirection == Compass::E))) { 
+    if (((lat >= 0.0) && (lat <= 90.0)) && ((lon >= 0.0) && (lon <= 180.0))){
+      if (((latDirect == Compass::N) || (latDirect == Compass::S)) && ((lonDirect == Compass::W) || (lonDirect == Compass::E))) {
+        latitudeDirection = latDirect;
+        longitudeDirection = lonDirect;
+      }
+      else if (((latDirect != Compass::N) && (latDirect != Compass:: S)) && ((lonDirect == Compass::W) || (lonDirect == Compass::E))) { 
         latitudeDirection = Compass::N; 
+        longitudeDirection = lonDirect;
         }
-      else if (((latitudeDirection == Compass::N) || (latitudeDirection == Compass::S)) && ((longitudeDirection != Compass::W) && (longitudeDirection != Compass::E))) { 
+      else if (((latDirect == Compass::N) || (latDirect == Compass::S)) && ((lonDirect != Compass::W) && (lonDirect != Compass::E))) { 
+        latitudeDirection = latDirect;
         longitudeDirection = Compass::W; 
         }
     }
-    else if (((0.0 > latitude) || (latitude > 90.0)) && ((0.0 <= longitude) && (longitude <= 180.0))) { 
+    else if (((lat < 0.0) || (lat > 90.0)) && ((lon >= 0.0) && (lon <= 180.0))) { 
         latitude = 0;
         latitudeDirection = Compass::N;
+        longitude = lon;
         longitudeDirection = Compass::W;
       }
-    else if (((0.0 <= latitude) && (latitude <= 90.0)) && ((0.0 > longitude) || (longitude > 180.0))) {
+    else if (((lat >= 0.0) && (lat <= 90.0)) && ((lon < 0.0) || (lon > 180.0))) {
+        latitude = lat;
         latitudeDirection = Compass::N;
         longitude = 0;
         longitudeDirection = Compass::W;
        }
-    else if (((0.0 > latitude) || (latitude > 90.0)) && ((0.0 > longitude) || (longitude > 180.0))) {
+    else if (((lat < 0.0) || (lat > 90.0)) && ((lon < 0.0) || (lon > 180.0))) {
        latitude = 0;
-       longitude = 0;
        latitudeDirection = Compass::N;
+       longitude = 0;
        longitudeDirection = Compass::W;
       }
     }
