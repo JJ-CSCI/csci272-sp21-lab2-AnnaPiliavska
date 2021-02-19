@@ -120,6 +120,7 @@ TEST_CASE( "GPS" ) {
         REQUIRE( c.getLongitude() == 50.34 );
     }
     SECTION( "t7" ) {
+        GPS c{12.12, -50.34};
         REQUIRE( c.getLatitude() == 12.12 );
         REQUIRE( c.getLongitude() == 0.0 );
     }
